@@ -35,7 +35,7 @@
  * @brief ID of the Kia Soul's OBD steering wheel angle CAN frame.
  *
  */
-#define KIA_SOUL_OBD_STEERING_WHEEL_ANGLE_CAN_ID ( 0x2B0 )
+#define KIA_SOUL_OBD_STEERING_WHEEL_ANGLE_CAN_ID ( 0x0C6 )
 
 /*
  * @brief ID of the Kia Soul's OBD wheel speed CAN frame.
@@ -105,10 +105,10 @@ typedef struct
 // VEHICLE AND BOARD PARAMETERS
 // ****************************************************************************
 
- /*
- * @brief Number of steps per volt corresponding to 4096 steps (2^12) across 5 volts.
- *
- */
+/*
+* @brief Number of steps per volt corresponding to 4096 steps (2^12) across 5 volts.
+*
+*/
 #define STEPS_PER_VOLT ( 819.2 )
 
 /*
@@ -314,7 +314,7 @@ typedef struct
  * @brief Minimum allowable steering DAC output. [volts]
  *
  */
-#define STEERING_SPOOF_LOW_SIGNAL_VOLTAGE_MIN ( 0.80 )
+#define STEERING_SPOOF_LOW_SIGNAL_VOLTAGE_MIN ( 0.90 )
 
 /*
  * @brief Maximum allowable steering DAC output. [volts]
@@ -332,7 +332,7 @@ typedef struct
  * @brief Maximum allowable steering DAC output. [volts]
  *
  */
-#define STEERING_SPOOF_HIGH_SIGNAL_VOLTAGE_MAX ( 4.20 )
+#define STEERING_SPOOF_HIGH_SIGNAL_VOLTAGE_MAX ( 4.10 )
 
 /*
  * @brief Minimum allowed value for the low spoof signal value. [steps]
@@ -366,13 +366,13 @@ typedef struct
  * @brief Scalar value for the low spoof signal taken from a calibration curve.
  *
  */
-#define TORQUE_SPOOF_LOW_SIGNAL_CALIBRATION_CURVE_SCALE ( 0.135 )
+#define TORQUE_SPOOF_LOW_SIGNAL_CALIBRATION_CURVE_SCALE ( 0.145 )
 
 /*
  * @brief Offset value for the low spoof signal taken from a calibration curve.
  *
  */
-#define TORQUE_SPOOF_LOW_SIGNAL_CALIBRATION_CURVE_OFFSET ( 2.39 )
+#define TORQUE_SPOOF_LOW_SIGNAL_CALIBRATION_CURVE_OFFSET ( 2.5 )
 
 /*
  * @brief Scalar value for the high spoof signal taken from a calibration curve.
@@ -384,7 +384,7 @@ typedef struct
  * @brief Offset value for the high spoof signal taken from a calibration curve.
  *
  */
-#define TORQUE_SPOOF_HIGH_SIGNAL_CALIBRATION_CURVE_OFFSET ( 2.42 )
+#define TORQUE_SPOOF_HIGH_SIGNAL_CALIBRATION_CURVE_OFFSET ( 2.5 )
 
 /*
  * @brief Minimum allowed value for the high spoof signal value.
@@ -407,7 +407,7 @@ typedef struct
  *        override.
  *
  */
-#define TORQUE_DIFFERENCE_OVERRIDE_THRESHOLD ( 2000 )
+#define TORQUE_DIFFERENCE_OVERRIDE_THRESHOLD ( 1600 )
 
 
 
@@ -432,25 +432,25 @@ typedef struct
  * @brief Minimum allowed voltage for the low spoof signal voltage. [volts]
  *
  */
-#define THROTTLE_SPOOF_LOW_SIGNAL_VOLTAGE_MIN ( 0.30 )
+#define THROTTLE_SPOOF_LOW_SIGNAL_VOLTAGE_MIN ( 0.361 )
 
 /*
  * @brief Maximum allowed voltage for the low spoof signal voltage. [volts]
  *
  */
-#define THROTTLE_SPOOF_LOW_SIGNAL_VOLTAGE_MAX ( 2.00 )
+#define THROTTLE_SPOOF_LOW_SIGNAL_VOLTAGE_MAX ( 2.267 )
 
 /**
  * @brief Minimum allowed voltage for the high spoof signal voltage. [volts]
  *
  */
-#define THROTTLE_SPOOF_HIGH_SIGNAL_VOLTAGE_MIN ( 0.70 )
+#define THROTTLE_SPOOF_HIGH_SIGNAL_VOLTAGE_MIN ( 0.724 )
 
 /**
  * @brief Maximum allowed voltage for the high spoof signal voltage. [volts]
  *
  */
-#define THROTTLE_SPOOF_HIGH_SIGNAL_VOLTAGE_MAX ( 4.10 )
+#define THROTTLE_SPOOF_HIGH_SIGNAL_VOLTAGE_MAX ( 4.53 )
 
 /*
  * @brief Minimum allowed value for the low spoof signal value. [steps]

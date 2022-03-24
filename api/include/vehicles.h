@@ -15,6 +15,8 @@
 #include "vehicles/kia_soul_ev.h"
 #elif defined(KIA_NIRO)
 #include "vehicles/kia_niro.h"
+#elif defined(LADA_VESTA)
+#include "vehicles/lada_vesta.h"
 #endif
 
 #define CONSTRAIN(amt, low, high) ((amt) < (low) ? (low) : ((amt) > (high) ? (high) : (amt)))

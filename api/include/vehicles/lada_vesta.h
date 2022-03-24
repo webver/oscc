@@ -502,6 +502,94 @@ typedef struct
  */
 #define ACCELERATOR_OVERRIDE_THRESHOLD ( 185.0 )
 
+// ****************************************************************************
+// BRAKE SERVO MODULE
+// ****************************************************************************
 
+/*
+ * @brief Minimum allowable brake value.
+ *
+ */
+#define MINIMUM_BRAKE_SERVO_COMMAND ( 0.0 )
+
+/*
+ * @brief Maximum allowable brake value.
+ *
+ */
+#define MAXIMUM_BRAKE_SERVO_COMMAND ( 1.0 )
+
+/*
+ * @brief Minimum allowed voltage for the low spoof signal voltage. [volts]
+ *
+ */
+#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MIN ( 0.361 )
+
+/*
+ * @brief Maximum allowed voltage for the low spoof signal voltage. [volts]
+ *
+ */
+#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MAX ( 2.267 )
+
+/**
+ * @brief Minimum allowed voltage for the high spoof signal voltage. [volts]
+ *
+ */
+#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MIN ( 0.724 )
+
+/**
+ * @brief Maximum allowed voltage for the high spoof signal voltage. [volts]
+ *
+ */
+#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MAX ( 4.53 )
+
+/*
+ * @brief Minimum allowed value for the low spoof signal value. [steps]
+ *
+ * Equal to \ref BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MIN * \ref STEPS_PER_VOLT.
+ */
+#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_RANGE_MIN ( 245 )
+
+/*
+ * @brief Minimum allowed value for the low spoof signal value. [steps]
+ *
+ * Equal to \ref BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MAX * \ref STEPS_PER_VOLT.
+ */
+#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_RANGE_MAX ( 1638 )
+
+/*
+ * @brief Minimum allowed value for the low spoof signal value. [steps]
+ *
+ * Equal to \ref BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MIN * \ref STEPS_PER_VOLT.
+ */
+#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_RANGE_MIN ( 573 )
+
+/*
+ * @brief Minimum allowed value for the low spoof signal value. [steps]
+ *
+ * Equal to \ref BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MAX * \ref STEPS_PER_VOLT.
+ */
+#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_RANGE_MAX ( 3358 )
+
+/*
+ * @brief Calculation to convert a throttle position to a low spoof voltage.
+ *
+ */
+#define BRAKE_SERVO_POSITION_TO_VOLTS_LOW( position ) ( (position) *\
+    (BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MAX - BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MIN) +\
+    BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MIN  )
+
+/*
+ * @brief Calculation to convert a throttle position to a high spoof voltage.
+ *
+ */
+#define BRAKE_SERVO_POSITION_TO_VOLTS_HIGH( position ) ( (position) *\
+    (BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MAX - BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MIN) +\
+    BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MIN  )
+
+/*
+ * @brief Value of the accelerator position that indicates operator override. [steps]
+ *
+ */
+#define BRAKE_SERVO_PEDAL_OVERRIDE_THRESHOLD ( 185.0 )
 
 #endif

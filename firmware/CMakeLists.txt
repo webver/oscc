@@ -23,6 +23,7 @@ if(TESTS)
         add_subdirectory(brake/kia_soul_ev_niro/tests)
     endif()
 
+    add_subdirectory(brake-servo/tests)
     add_subdirectory(can_gateway/tests)
     add_subdirectory(steering/tests)
     add_subdirectory(throttle/tests)
@@ -32,6 +33,7 @@ if(TESTS)
         run-unit-tests
         DEPENDS
         run-brake-unit-tests
+        run-brake-servo-unit-tests
         run-can-gateway-unit-tests
         run-steering-unit-tests
         run-throttle-unit-tests)
@@ -40,6 +42,7 @@ if(TESTS)
         run-property-tests
         DEPENDS
         run-brake-property-tests
+        run-brake-servo-property-tests
         run-steering-property-tests
         run-throttle-property-tests)
 
@@ -61,6 +64,7 @@ else()
     project(firmware)
 
     add_subdirectory(brake)
+    add_subdirectory(brake-servo)
     add_subdirectory(can_gateway)
     add_subdirectory(null)
     add_subdirectory(steering)
@@ -70,6 +74,7 @@ else()
         all-upload
         DEPENDS
         brake-upload
+        brake-servo-upload
         can-gateway-upload
         steering-upload
         throttle-upload)

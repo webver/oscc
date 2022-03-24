@@ -10,6 +10,9 @@ set(STEERING_OVERRIDE ON CACHE BOOL "Enable steering override")
 set(SERIAL_PORT_BRAKE "/dev/ttyACM0" CACHE STRING "Serial port of the brake module")
 set(SERIAL_BAUD_BRAKE "115200" CACHE STRING "Serial baud rate of the brake module")
 
+set(SERIAL_PORT_BRAKE_SERVO "/dev/ttyACM0" CACHE STRING "Serial port of the brake servo module")
+set(SERIAL_BAUD_BRAKE_SERVO "115200" CACHE STRING "Serial baud rate of the brake servo module")
+
 set(SERIAL_PORT_CAN_GATEWAY "/dev/ttyACM0" CACHE STRING "Serial port of the CAN gateway module")
 set(SERIAL_BAUD_CAN_GATEWAY "115200" CACHE STRING "Serial baud rate of the CAN gateway module")
 

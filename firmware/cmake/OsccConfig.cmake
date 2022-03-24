@@ -4,11 +4,12 @@
 set(KIA_SOUL OFF CACHE BOOL "Build firmware for the petrol Kia Soul")
 set(KIA_SOUL_EV OFF CACHE BOOL "Build firmware for the Kia Soul EV")
 set(KIA_NIRO OFF CACHE BOOL "Build firmware for the Kia Niro")
+set(LADA_VESTA OFF CACHE BOOL "Build firmware for the Lada Vesta")
 
 set(VEHICLE "" CACHE STRING
   "VEHICLE chosen by the user at CMake configure time")
 
-set(VEHICLE_VALUES "kia_soul;kia_soul_ev;kia_niro" CACHE STRING
+set(VEHICLE_VALUES "kia_soul;kia_soul_ev;kia_niro;lada_vesta" CACHE STRING
   "List of possible values for the VEHICLE cache variable")
 
 set_property(CACHE VEHICLE PROPERTY STRINGS ${VEHICLE_VALUES})
@@ -30,6 +31,10 @@ elseif(KIA_NIRO)
   add_definitions(-DKIA_NIRO)
   set(VEHICLE kia_niro)
   message(WARNING "-DKIA_NIRO=ON is being deprecated for VEHICLE string assign '-DVEHICLE=kia_niro'")
+elseif(LADA_VESTA)
+  add_definitions(-DLADA_VESTA)
+  set(VEHICLE lada_vesta)
+  message(WARNING "-DLADA_VESTA=ON is being deprecated for VEHICLE string assign '-DVEHICLE=lada_vesta'")
 else()
   message(FATAL_ERROR "No platform selected, available platforms are: ${VEHICLE_VALUES}")
 endif()
