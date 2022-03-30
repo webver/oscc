@@ -49,19 +49,19 @@ void check_for_faults( void )
                 &grounded_fault_state);
 
         // sensor pins tied to ground - a value of zero indicates disconnection
-        if( inputs_grounded == true )
-        {
-            disable_control( );
-
-            DTC_SET(
-                g_brake_servo_control_state.dtcs,
-                OSCC_BRAKE_DTC_INVALID_SENSOR_VAL );
-
-            publish_fault_report( );
-
-            DEBUG_PRINTLN( "Bad value read from accelerator position sensor" );
-        }
-        else if ( operator_overridden == true )
+//        if( inputs_grounded == true )
+//        {
+//            disable_control( );
+//
+//            DTC_SET(
+//                g_brake_servo_control_state.dtcs,
+//                OSCC_BRAKE_DTC_INVALID_SENSOR_VAL );
+//
+//            publish_fault_report( );
+//
+//            DEBUG_PRINTLN( "Bad value read from accelerator position sensor" );
+//        } else
+        if ( operator_overridden == true )
         {
             disable_control( );
 

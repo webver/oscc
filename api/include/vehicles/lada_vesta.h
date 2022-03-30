@@ -522,53 +522,53 @@ typedef struct
  * @brief Minimum allowed voltage for the low spoof signal voltage. [volts]
  *
  */
-#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MIN ( 0.361 )
+#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MIN ( 0.0 )
 
 /*
  * @brief Maximum allowed voltage for the low spoof signal voltage. [volts]
  *
  */
-#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MAX ( 2.267 )
+#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MAX ( 5.0 )
 
 /**
  * @brief Minimum allowed voltage for the high spoof signal voltage. [volts]
  *
  */
-#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MIN ( 0.724 )
+#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MIN ( 0.0 )
 
 /**
  * @brief Maximum allowed voltage for the high spoof signal voltage. [volts]
  *
  */
-#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MAX ( 4.53 )
+#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MAX ( 5.0 )
 
 /*
  * @brief Minimum allowed value for the low spoof signal value. [steps]
  *
  * Equal to \ref BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MIN * \ref STEPS_PER_VOLT.
  */
-#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_RANGE_MIN ( 245 )
+#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_RANGE_MIN ( 0 )
 
 /*
  * @brief Minimum allowed value for the low spoof signal value. [steps]
  *
  * Equal to \ref BRAKE_SERVO_SPOOF_LOW_SIGNAL_VOLTAGE_MAX * \ref STEPS_PER_VOLT.
  */
-#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_RANGE_MAX ( 1638 )
+#define BRAKE_SERVO_SPOOF_LOW_SIGNAL_RANGE_MAX ( 4095 )
 
 /*
  * @brief Minimum allowed value for the low spoof signal value. [steps]
  *
  * Equal to \ref BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MIN * \ref STEPS_PER_VOLT.
  */
-#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_RANGE_MIN ( 573 )
+#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_RANGE_MIN ( 0 )
 
 /*
  * @brief Minimum allowed value for the low spoof signal value. [steps]
  *
  * Equal to \ref BRAKE_SERVO_SPOOF_HIGH_SIGNAL_VOLTAGE_MAX * \ref STEPS_PER_VOLT.
  */
-#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_RANGE_MAX ( 3358 )
+#define BRAKE_SERVO_SPOOF_HIGH_SIGNAL_RANGE_MAX ( 4095 )
 
 /*
  * @brief Calculation to convert a throttle position to a low spoof voltage.
