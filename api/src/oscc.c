@@ -267,7 +267,7 @@ oscc_result_t oscc_publish_selector_position( char position )
                     .magic[1] = ( uint8_t ) OSCC_MAGIC_BYTE_1
             };
 
-    selector_cmd.torque_command = (char) position;
+    selector_cmd.selector_command = (char) position;
 
     result = oscc_can_write(
             OSCC_SELECTOR_COMMAND_CAN_ID,

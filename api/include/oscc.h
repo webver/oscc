@@ -141,6 +141,17 @@ oscc_result_t oscc_publish_steering_torque( double torque );
 
 
 /**
+ * @brief Publish message with requested selector position to
+ *        selector module.
+ *
+ * @param [in] angle - Requested position 'P'-'R'-'N'-'D' char.
+ *
+ * @return OSCC_ERROR or OSCC_OK
+ *
+ */
+oscc_result_t oscc_publish_selector_position( char position );
+
+/**
  * @brief Register callback function to be called when brake report
  *        received from brake module.
  *
@@ -178,6 +189,18 @@ oscc_result_t oscc_subscribe_to_throttle_reports( void( *callback )( oscc_thrott
  */
 oscc_result_t oscc_subscribe_to_steering_reports( void( *callback )( oscc_steering_report_s *report ) );
 
+
+/**
+ * @brief Register callback function to be called when selector report
+ *        received from selector module.
+ *
+ * @param [in] callback - Pointer to callback function to be called when
+ *                        selector report received from selector module.
+ *
+ * @return OSCC_ERROR or OSCC_OK
+ *
+ */
+oscc_result_t oscc_subscribe_to_selector_reports( void( *callback )( oscc_selector_report_s *report ) );
 
 /**
  * @brief Register callback function to be called when fault report

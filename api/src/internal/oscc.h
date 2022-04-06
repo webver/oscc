@@ -39,6 +39,9 @@ typedef struct {
 void (*brake_report_callback)(
     oscc_brake_report_s *report );
 
+void (*selector_report_callback)(
+        oscc_selector_report_s *report );
+
 void (*steering_report_callback)(
     oscc_steering_report_s *report );
 
