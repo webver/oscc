@@ -16,6 +16,9 @@ set(SERIAL_BAUD_BRAKE_SERVO "115200" CACHE STRING "Serial baud rate of the brake
 set(SERIAL_PORT_CAN_GATEWAY "/dev/ttyACM0" CACHE STRING "Serial port of the CAN gateway module")
 set(SERIAL_BAUD_CAN_GATEWAY "115200" CACHE STRING "Serial baud rate of the CAN gateway module")
 
+set(SERIAL_PORT_SELECTOR "/dev/ttyACM0" CACHE STRING "Serial port of the selector module")
+set(SERIAL_BAUD_SELECTOR "115200" CACHE STRING "Serial baud rate of the selector module")
+
 set(SERIAL_PORT_STEERING "/dev/ttyACM0" CACHE STRING "Serial port of the steering module")
 set(SERIAL_BAUD_STEERING "115200" CACHE STRING "Serial baud rate of the steering module")
 

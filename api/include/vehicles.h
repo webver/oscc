@@ -17,6 +17,8 @@
 #include "vehicles/kia_niro.h"
 #elif defined(LADA_VESTA)
 #include "vehicles/lada_vesta.h"
+#define OBD_SELECTOR_POSITION_CAN_ID (LADA_VESTA_OBD_SELECTOR_POSITION_CAN_ID)
+#define OBD_SPEED_CAN_ID (LADA_VESTA_OBD_SPEED_CAN_ID)
 #endif
 
 #define CONSTRAIN(amt, low, high) ((amt) < (low) ? (low) : ((amt) > (high) ? (high) : (amt)))

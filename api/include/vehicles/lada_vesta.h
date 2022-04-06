@@ -55,6 +55,18 @@
  */
 #define LADA_VESTA_OBD_STEERING_ANGLE_SCALAR ( 0.1 )
 
+/*
+ * @brief ID of the Lada vesta selector_position info frame
+ *
+ */
+#define LADA_VESTA_OBD_SELECTOR_POSITION_CAN_ID ( 0x3F7 )
+
+/*
+ * @brief ID of the Lada vesta speed info frame
+ *
+ */
+#define LADA_VESTA_OBD_SPEED_CAN_ID ( 0x4B0 )
+
 /**
  * @brief Steering wheel angle message data.
  * @warn Deprecated. Use \ref get_steering_wheel_angle instead.
