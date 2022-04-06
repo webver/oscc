@@ -960,13 +960,13 @@ can_contains_s can_detection( const char *can_channel )
             }
 
             vehicle_detection.has_brake_pressure |=
-                ( rx_frame.can_id == KIA_SOUL_OBD_BRAKE_PRESSURE_CAN_ID );
+                ( rx_frame.can_id == OBD_BRAKE_PRESSURE_CAN_ID );
 
             vehicle_detection.has_steering_angle |=
-                ( rx_frame.can_id == KIA_SOUL_OBD_STEERING_WHEEL_ANGLE_CAN_ID );
+                ( rx_frame.can_id == OBD_STEERING_WHEEL_ANGLE_CAN_ID );
 
             vehicle_detection.has_wheel_speed |=
-                ( rx_frame.can_id == KIA_SOUL_OBD_WHEEL_SPEED_CAN_ID );
+                ( rx_frame.can_id == OBD_WHEEL_SPEED_CAN_ID );
         }
     }
 
@@ -1148,7 +1148,7 @@ static oscc_result_t get_wheel_speed(
         return OSCC_ERROR;
     }
 
-    if(frame->can_id != KIA_SOUL_OBD_WHEEL_SPEED_CAN_ID)
+    if(frame->can_id != OBD_WHEEL_SPEED_CAN_ID)
     {
         return OSCC_ERROR;
     }
@@ -1218,14 +1218,14 @@ oscc_result_t get_steering_wheel_angle(
         return OSCC_ERROR;
     }
 
-    if(frame->can_id != KIA_SOUL_OBD_STEERING_WHEEL_ANGLE_CAN_ID)
+    if(frame->can_id != OBD_STEERING_WHEEL_ANGLE_CAN_ID)
     {
         return OSCC_ERROR;
     }
 
     int16_t raw = (frame->data[1] << 8) | frame->data[0];
 
-    *steering_wheel_angle = -((double)raw * KIA_SOUL_OBD_STEERING_ANGLE_SCALAR);
+    *steering_wheel_angle = -((double)raw * OBD_STEERING_ANGLE_SCALAR);
 
     return OSCC_OK;
 }
@@ -1240,7 +1240,7 @@ oscc_result_t get_brake_pressure(
         return OSCC_ERROR;
     }
 
-    if(frame->can_id != KIA_SOUL_OBD_BRAKE_PRESSURE_CAN_ID)
+    if(frame->can_id != OBD_BRAKE_PRESSURE_CAN_ID)
     {
         return OSCC_ERROR;
     }
