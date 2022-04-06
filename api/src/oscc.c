@@ -256,6 +256,28 @@ oscc_result_t oscc_publish_steering_torque( double torque )
     return result;
 }
 
+oscc_result_t oscc_publish_selector_position( char position )
+{
+    oscc_result_t result = OSCC_ERROR;
+
+
+    oscc_selector_command_s selector_cmd =
+            {
+                    .magic[0] = ( uint8_t ) OSCC_MAGIC_BYTE_0,
+                    .magic[1] = ( uint8_t ) OSCC_MAGIC_BYTE_1
+            };
+
+    selector_cmd.torque_command = (char) position;
+
+    result = oscc_can_write(
+            OSCC_SELECTOR_COMMAND_CAN_ID,
+            (void *) &selector_cmd,
+            sizeof(selector_cmd) );
+
+
+    return result;
+}
+
 oscc_result_t oscc_subscribe_to_brake_reports( void (*callback)(oscc_brake_report_s *report) )
 {
     oscc_result_t result = OSCC_ERROR;
@@ -300,6 +322,22 @@ oscc_result_t oscc_subscribe_to_steering_reports( void (*callback)(oscc_steering
 
     return result;
 }
+
+oscc_result_t oscc_subscribe_to_selector_reports( void (*callback)(oscc_selector_report_s *report))
+{
+    oscc_result_t result = OSCC_ERROR;
+
+
+    if ( callback != NULL )
+    {
+        selector_report_callback = callback;
+        result = OSCC_OK;
+    }
+
+
+    return result;
+}
+
 
 oscc_result_t oscc_subscribe_to_fault_reports( void (*callback)(oscc_fault_report_s *report))
 {
@@ -508,6 +546,16 @@ void oscc_update_status( int sig, siginfo_t *siginfo, void *context )
                     if ( fault_report_callback != NULL )
                     {
                         fault_report_callback( fault_report );
+                    }
+                }
+                else if ( rx_frame.can_id == OSCC_SELECTOR_REPORT_CAN_ID )
+                {
+                    oscc_selector_report_s *selector_report =
+                            ( oscc_selector_report_s* ) rx_frame.data;
+
+                    if ( selector_report_callback != NULL )
+                    {
+                        selector_report_callback( selector_report );
                     }
                 }
             }
