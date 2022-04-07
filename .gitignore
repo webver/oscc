@@ -10,3 +10,4 @@
 
 #cucumber port
 cucumber.wire
+/firmware/build/

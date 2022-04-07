@@ -15,6 +15,7 @@
 static void parse_brake_report( uint8_t *data );
 static void parse_steering_report( uint8_t *data );
 static void parse_throttle_report( uint8_t *data );
+static void parse_selector_report( uint8_t *data );
 
 
 void check_for_module_reports( void )
@@ -36,6 +37,10 @@ void check_for_module_reports( void )
         {
             parse_throttle_report( rx_frame.data );
         }
+        else if ( rx_frame.id == OSCC_SELECTOR_REPORT_CAN_ID )
+        {
+            parse_selector_report( rx_frame.data );
+        }
     }
 }
 
@@ -47,9 +52,11 @@ void republish_obd_frames_to_control_can_bus( void )
 
     if( ret == CAN_RX_FRAME_AVAILABLE )
     {
-        if( (rx_frame.id == KIA_SOUL_OBD_STEERING_WHEEL_ANGLE_CAN_ID)
-            || (rx_frame.id == KIA_SOUL_OBD_WHEEL_SPEED_CAN_ID)
-            || (rx_frame.id == KIA_SOUL_OBD_BRAKE_PRESSURE_CAN_ID) )
+        if( (rx_frame.id == OBD_STEERING_WHEEL_ANGLE_CAN_ID)
+            || (rx_frame.id == OBD_WHEEL_SPEED_CAN_ID)
+            || (rx_frame.id == OBD_BRAKE_PRESSURE_CAN_ID)
+            || (rx_frame.id == OBD_SELECTOR_POSITION_CAN_ID)
+            || (rx_frame.id == OBD_SPEED_CAN_ID) )
         {
             cli();
             g_control_can.sendMsgBuf(
@@ -182,5 +189,45 @@ static void parse_throttle_report( uint8_t *data )
     else
     {
         g_display_state.dtc_screen.throttle[OSCC_THROTTLE_DTC_OPERATOR_OVERRIDE] = false;
+    }
+}
+
+static void parse_selector_report( uint8_t *data )
+{
+    oscc_selector_report_s *report = (oscc_selector_report_s *) data;
+
+
+    if ( report->enabled == 1 )
+    {
+        g_display_state.status_screen.selector = MODULE_STATUS_ENABLED;
+    }
+    else
+    {
+        g_display_state.status_screen.selector = MODULE_STATUS_DISABLED;
+    }
+
+
+    if ( report->dtcs != 0 )
+    {
+        g_display_state.status_screen.selector = MODULE_STATUS_ERROR;
+    }
+
+
+    if ( DTC_CHECK(report->dtcs, OSCC_SELECTOR_DTC_INVALID_SENSOR_VAL) != 0 )
+    {
+        g_display_state.dtc_screen.selector[OSCC_SELECTOR_DTC_INVALID_SENSOR_VAL] = true;
+    }
+    else
+    {
+        g_display_state.dtc_screen.selector[OSCC_SELECTOR_DTC_INVALID_SENSOR_VAL] = false;
+    }
+
+    if ( DTC_CHECK(report->dtcs, OSCC_SELECTOR_DTC_OPERATOR_OVERRIDE) != 0 )
+    {
+        g_display_state.dtc_screen.selector[OSCC_SELECTOR_DTC_OPERATOR_OVERRIDE] = true;
+    }
+    else
+    {
+        g_display_state.dtc_screen.selector[OSCC_SELECTOR_DTC_OPERATOR_OVERRIDE] = false;
     }
 }

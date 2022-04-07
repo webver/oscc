@@ -12,6 +12,7 @@
 #include "can_protocols/brake_can_protocol.h"
 #include "can_protocols/steering_can_protocol.h"
 #include "can_protocols/throttle_can_protocol.h"
+#include <can_protocols/selector_can_protocol.h>
 
 
 /*
@@ -55,6 +56,7 @@ typedef struct
     module_status_t brakes;
     module_status_t steering;
     module_status_t throttle;
+    module_status_t selector;
 } status_screen_s;
 
 
@@ -67,6 +69,7 @@ typedef struct
     bool brakes[OSCC_BRAKE_DTC_COUNT];
     bool steering[OSCC_STEERING_DTC_COUNT];
     bool throttle[OSCC_THROTTLE_DTC_COUNT];
+    bool selector[OSCC_SELECTOR_DTC_COUNT];
 } dtc_screen_s;
 
 
