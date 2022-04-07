@@ -236,10 +236,6 @@ void disable_control(void) {
 
         g_selector_control_state.enabled = false;
 
-#ifdef STEERING_OVERRIDE
-        filtered_diff = 0;
-#endif
-
         DEBUG_PRINTLN("Control disabled");
     }
 }
