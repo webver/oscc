@@ -114,9 +114,8 @@ static void process_selector_command(
 
                     const char clamped_position = selector_command->selector_command;
 
-                    if (clamped_position != g_selector_control_state.current_position) {
-                        update_selector_position(clamped_position);
-                    }
+                    update_selector_position(clamped_position);
+
                 } else {
                     DEBUG_PRINTLN("Wrong argument");
                 }

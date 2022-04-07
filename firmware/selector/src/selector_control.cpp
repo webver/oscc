@@ -18,6 +18,7 @@
 #include "selector_control.h"
 #include "vehicles.h"
 
+static bool motor_is_enabled(void);
 
 static void motor_set_enabled(bool is_enable);
 
@@ -66,12 +67,15 @@ void check_for_faults(void) {
     }
 }
 
+static bool motor_is_enabled(void) {
+    return (digitalRead(PIN_STEP_MOTOR_ENABLE) == LOW);
+}
 
 static void motor_set_enabled(bool is_enable) {
     if (is_enable == true) {
         digitalWrite(PIN_STEP_MOTOR_ENABLE, LOW);
     } else {
-        digitalWrite(PIN_STEP_MOTOR_DIRECTION, HIGH);
+        digitalWrite(PIN_STEP_MOTOR_ENABLE, HIGH);
     }
 }
 
@@ -156,7 +160,9 @@ void move_selector(void) {
 
                 if (g_selector_control_state.current_position != g_selector_control_state.request_position) {
 
-                    motor_set_enabled(true);
+                    if (false == motor_is_enabled()) {
+                        motor_set_enabled(true);
+                    }
 
                     bool isClockWise = false;
 
@@ -190,6 +196,10 @@ void move_selector(void) {
                 sei();
 
                 DEBUG_PRINTLN("Stop selector moving because of brake unpressed or speed !=0");
+            }
+        } else {
+            if (true == motor_is_enabled()) {
+                motor_set_enabled(false);
             }
         }
     }
