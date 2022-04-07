@@ -41,11 +41,16 @@ void check_for_faults(void) {
         || (g_selector_control_state.dtcs > 0)) {
 
         static condition_state_s operator_override_state = CONDITION_STATE_INIT;
-        
-        bool operator_overridden = condition_exceeded_duration(
-                g_selector_control_state.last_set_position != g_selector_control_state.current_position,
-                FAULT_HYSTERESIS,
-                &operator_override_state);
+
+        bool operator_overridden = false;
+
+        //Check only in idle state
+        if (g_selector_control_state.last_set_position != 0x00 && g_selector_control_state.request_position == 0x00) {
+            operator_overridden = condition_exceeded_duration(
+                    g_selector_control_state.last_set_position != g_selector_control_state.current_position,
+                    FAULT_HYSTERESIS,
+                    &operator_override_state);
+        }
 
         if (operator_overridden == true) {
             disable_control();
@@ -119,10 +124,10 @@ static uint8_t positionToIndex(const char position) {
         case 'P':
             position_index = 1;
             break;
-        case 'N':
+        case 'R':
             position_index = 2;
             break;
-        case 'R':
+        case 'N':
             position_index = 3;
             break;
         case 'D':
@@ -140,16 +145,30 @@ void update_selector_position(const char request_position) {
 
         if (g_selector_control_state.is_brake_enabled && g_selector_control_state.speed == 0) {
 
-            if (g_selector_control_state.current_position != request_position) {
+            g_selector_control_state.request_position = request_position;
 
-                motor_set_enabled(true);
+        } else {
+            DEBUG_PRINTLN("Brake not pressed or speed != 0");
+        }
 
-                while (g_selector_control_state.current_position != request_position &&
-                       g_selector_control_state.is_brake_enabled &&
-                       g_selector_control_state.speed == 0) {
+    }
+}
+
+void move_selector(void) {
+    if (g_selector_control_state.enabled == true) {
+
+        if (g_selector_control_state.request_position != 0x00) {
+
+            if (g_selector_control_state.is_brake_enabled &&
+                g_selector_control_state.speed == 0) {
+
+                if (g_selector_control_state.current_position != g_selector_control_state.request_position) {
+
+                    motor_set_enabled(true);
+
                     bool isClockWise = false;
 
-                    const uint8_t request_index = positionToIndex(request_position);
+                    const uint8_t request_index = positionToIndex(g_selector_control_state.request_position);
                     const uint8_t current_index = positionToIndex(g_selector_control_state.current_position);
 
                     if (current_index != 0 && request_index != 0) {
@@ -160,17 +179,23 @@ void update_selector_position(const char request_position) {
                         motor_make_step();
                     }
 
+                } else {
+                    cli();
+                    motor_set_enabled(false);
+
+                    g_selector_control_state.request_position = 0x00;
+                    g_selector_control_state.last_set_position = g_selector_control_state.request_position;
+                    sei();
                 }
 
+            } else {
+                cli();
                 motor_set_enabled(false);
 
-                g_selector_control_state.last_set_position = request_position;
+                g_selector_control_state.request_position = 0x00;
+                sei();
             }
-
-        } else {
-            DEBUG_PRINTLN("Brake not pressed or speed != 0");
         }
-
     }
 }
 

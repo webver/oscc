@@ -33,5 +33,7 @@ int main( void )
         check_for_incoming_message( );
 
         check_for_faults( );
+
+        move_selector();
     }
 }

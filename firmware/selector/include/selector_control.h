@@ -24,9 +24,11 @@ typedef struct {
     bool operator_override; /* Flag indicating whether selector wheel was
                                manually turned by operator. */
 
-    char current_position; /*Current selector position char P-R-N-D-1-2-3-4*/
+    char current_position; /*Current selector position char P-R-N-D-1-2-3-4 */
 
-    char last_set_position;  /*Last selector position set by controller char P-R-N-D-1-2-3-4*/
+    char request_position; /*Position to move */
+
+    char last_set_position;  /*Last selector position set by controller char P-R-N-D-1-2-3-4 */
 
     bool is_brake_enabled; /*Is brake pedal pressed*/
 
@@ -54,7 +56,7 @@ void check_for_faults(void);
 // ****************************************************************************
 // Function:    update_selector_position
 //
-// Purpose:     Rotate step motor until requested position.
+// Purpose:     Set requested position to global state.
 //
 // Returns:     void
 //
@@ -63,6 +65,18 @@ void check_for_faults(void);
 // ****************************************************************************
 void update_selector_position(const char position);
 
+
+// ****************************************************************************
+// Function:    move_selector
+//
+// Purpose:     Rotate step motor until requested position.
+//
+// Returns:     void
+//
+// Parameters:  void
+//
+// ****************************************************************************
+void move_selector(void);
 
 // *****************************************************
 // Function:    enable_control
