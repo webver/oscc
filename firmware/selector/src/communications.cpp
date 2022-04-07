@@ -108,6 +108,17 @@ static void process_selector_command(
         const oscc_selector_command_s *const selector_command =
                 (oscc_selector_command_s *) data;
 
+        DEBUG_PRINT("selector position: ");
+        DEBUG_PRINTLN(g_selector_control_state.current_position);
+        DEBUG_PRINT("brake is enabled: ");
+        DEBUG_PRINTLN(g_selector_control_state.is_brake_enabled);
+        DEBUG_PRINT("speed: ");
+        DEBUG_PRINTLN(g_selector_control_state.speed);
+        DEBUG_PRINT("module is enabled: ");
+        DEBUG_PRINTLN(g_selector_control_state.enabled);
+        DEBUG_PRINT("selector command: ");
+        DEBUG_PRINTLN(selector_command->selector_command);
+
         if (g_selector_control_state.current_position != 0x00) {
             if ((selector_command->selector_command == 'P') || (selector_command->selector_command == 'R') ||
                 (selector_command->selector_command == 'N') || (selector_command->selector_command == 'D')) {

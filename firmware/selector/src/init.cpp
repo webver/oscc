@@ -85,11 +85,12 @@ void init_communication_interfaces(void) {
     g_control_can.init_Mask(0, 0, 0x7F0); // Filter for 0x0N0 to 0x0NF
     g_control_can.init_Filt(0, 0, OSCC_SELECTOR_CAN_ID_INDEX);
     g_control_can.init_Filt(1, 0, OSCC_FAULT_CAN_ID_INDEX);
-    g_control_can.init_Filt(2, 0, OBD_SELECTOR_POSITION_CAN_ID);
-    g_control_can.init_Filt(2, 0, OBD_SELECTOR_POSITION_CAN_ID);
     // Accept only CAN Disable when buffer overflow occurs in buffer 0
     g_control_can.init_Mask(1, 0, 0x7FF); // Filter for one CAN ID
     g_control_can.init_Filt(2, 1, OSCC_SELECTOR_DISABLE_CAN_ID);
+    //Accept OBD messages
+    g_control_can.init_Filt(3, 0, OBD_SELECTOR_POSITION_CAN_ID);
+    g_control_can.init_Filt(4, 0, OBD_SPEED_CAN_ID);
 }
 
 

@@ -162,6 +162,11 @@ oscc_result_t oscc_enable( void )
         if (result == OSCC_OK )
         {
             result = oscc_enable_steering( );
+
+            if (result == OSCC_OK )
+            {
+                result = oscc_enable_selector( );
+            }
         }
     }
 
@@ -183,6 +188,11 @@ oscc_result_t oscc_disable( void )
         if ( result == OSCC_OK )
         {
             result = oscc_disable_steering( );
+
+            if ( result == OSCC_OK )
+            {
+                result = oscc_disable_selector( );
+            }
         }
     }
 
@@ -433,6 +443,26 @@ oscc_result_t oscc_enable_steering( void )
     return result;
 }
 
+oscc_result_t oscc_enable_selector( void )
+{
+    oscc_result_t result = OSCC_ERROR;
+
+
+    oscc_selector_enable_s selector_enable =
+            {
+                    .magic[0] = ( uint8_t ) OSCC_MAGIC_BYTE_0,
+                    .magic[1] = ( uint8_t ) OSCC_MAGIC_BYTE_1
+            };
+
+    result = oscc_can_write(
+            OSCC_SELECTOR_ENABLE_CAN_ID,
+            (void *) &selector_enable,
+            sizeof(selector_enable) );
+
+
+    return result;
+}
+
 oscc_result_t oscc_disable_brakes( void )
 {
     oscc_result_t result = OSCC_ERROR;
@@ -493,6 +523,25 @@ oscc_result_t oscc_disable_steering( void )
     return result;
 }
 
+oscc_result_t oscc_disable_selector( void )
+{
+    oscc_result_t result = OSCC_ERROR;
+
+
+    oscc_selector_disable_s selector_disable =
+            {
+                    .magic[0] = ( uint8_t ) OSCC_MAGIC_BYTE_0,
+                    .magic[1] = ( uint8_t ) OSCC_MAGIC_BYTE_1
+            };
+
+    result = oscc_can_write(
+            OSCC_SELECTOR_DISABLE_CAN_ID,
+            (void *) &selector_disable,
+            sizeof(selector_disable) );
+
+
+    return result;
+}
 
 void oscc_update_status( int sig, siginfo_t *siginfo, void *context )
 {

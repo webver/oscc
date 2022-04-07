@@ -65,6 +65,9 @@ oscc_result_t oscc_enable_brakes(
 oscc_result_t oscc_enable_steering(
     void );
 
+oscc_result_t oscc_enable_selector(
+        void );
+
 oscc_result_t oscc_enable_throttle(
     void );
 
@@ -73,6 +76,9 @@ oscc_result_t oscc_disable_brakes(
 
 oscc_result_t oscc_disable_steering(
     void );
+
+oscc_result_t oscc_disable_selector(
+        void );
 
 oscc_result_t oscc_disable_throttle(
     void );

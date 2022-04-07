@@ -116,7 +116,7 @@ typedef struct {
                        *   Byte 0 should be \ref OSCC_MAGIC_BYTE_0.
                        *   Byte 1 should be \ref OSCC_MAGIC_BYTE_1. */
 
-    uint8_t selector_command; /* Selector request P,R,N,D ASCII values*/
+    char selector_command; /* Selector request P,R,N,D ASCII values*/
 
     uint8_t reserved[5]; /*!< Reserved. */
 } oscc_selector_command_s;
