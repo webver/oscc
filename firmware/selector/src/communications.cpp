@@ -11,7 +11,6 @@
 #include "communications.h"
 #include "debug.h"
 #include "globals.h"
-#include "mcp_can.h"
 #include "selector_control.h"
 #include "oscc_can.h"
 #include "vehicles.h"
@@ -108,31 +107,22 @@ static void process_selector_command(
         const oscc_selector_command_s *const selector_command =
                 (oscc_selector_command_s *) data;
 
-        DEBUG_PRINT("selector position: ");
-        DEBUG_PRINTLN(g_selector_control_state.current_position);
-        DEBUG_PRINT("brake is enabled: ");
-        DEBUG_PRINTLN(g_selector_control_state.is_brake_enabled);
-        DEBUG_PRINT("speed: ");
-        DEBUG_PRINTLN(g_selector_control_state.speed);
-        DEBUG_PRINT("module is enabled: ");
-        DEBUG_PRINTLN(g_selector_control_state.enabled);
-        DEBUG_PRINT("selector command: ");
-        DEBUG_PRINTLN(selector_command->selector_command);
+        if (g_selector_control_state.enabled) {
+            if (g_selector_control_state.current_position != 0x00) {
+                if ((selector_command->selector_command == 'P') || (selector_command->selector_command == 'R') ||
+                    (selector_command->selector_command == 'N') || (selector_command->selector_command == 'D')) {
 
-        if (g_selector_control_state.current_position != 0x00) {
-            if ((selector_command->selector_command == 'P') || (selector_command->selector_command == 'R') ||
-                (selector_command->selector_command == 'N') || (selector_command->selector_command == 'D')) {
+                    const char clamped_position = selector_command->selector_command;
 
-                const uint8_t clamped_position = selector_command->selector_command;
-
-                if (clamped_position != g_selector_control_state.current_position) {
-                    update_selector_position(clamped_position);
+                    if (clamped_position != g_selector_control_state.current_position) {
+                        update_selector_position(clamped_position);
+                    }
+                } else {
+                    DEBUG_PRINTLN("Wrong argument");
                 }
             } else {
-                DEBUG_PRINTLN("Wrong argument");
+                DEBUG_PRINTLN("Unknown selector position");
             }
-        } else {
-            DEBUG_PRINTLN("Unknown selector position");
         }
     }
 }

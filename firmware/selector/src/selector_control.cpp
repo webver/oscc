@@ -27,14 +27,6 @@ static void motor_make_step(void);
 
 static uint8_t positionToIndex(const char position);
 
-static float exponential_moving_average(
-        const float alpha,
-        const float input,
-        const float average);
-
-#ifdef STEERING_OVERRIDE
-static uint16_t filtered_diff = 0;
-#endif
 
 void check_for_faults(void) {
     if ((g_selector_control_state.enabled == true)
@@ -172,7 +164,7 @@ void move_selector(void) {
                     const uint8_t current_index = positionToIndex(g_selector_control_state.current_position);
 
                     if (current_index != 0 && request_index != 0) {
-                        isClockWise = (request_index > current_index) ? true : false;
+                        isClockWise = (request_index > current_index) ? false : true;
 
                         motor_set_direction(isClockWise);
 
@@ -186,6 +178,8 @@ void move_selector(void) {
                     g_selector_control_state.request_position = 0x00;
                     g_selector_control_state.last_set_position = g_selector_control_state.request_position;
                     sei();
+
+                    DEBUG_PRINTLN("Requested selector position set");
                 }
 
             } else {
@@ -194,6 +188,8 @@ void move_selector(void) {
 
                 g_selector_control_state.request_position = 0x00;
                 sei();
+
+                DEBUG_PRINTLN("Stop selector moving because of brake unpressed or speed !=0");
             }
         }
     }
@@ -247,20 +243,3 @@ void disable_control(void) {
         DEBUG_PRINTLN("Control disabled");
     }
 }
-
-//static float exponential_moving_average(
-//    const float alpha,
-//    const float input,
-//    const float average )
-//{
-//    return ( (alpha * input) + ((1.0 - alpha) * average) );
-//}
-
-//static void read_torque_sensor(
-//    steering_torque_s * value )
-//{
-//    cli();
-//    value->high = analogRead( PIN_TORQUE_SENSOR_HIGH ) << 2;
-//    value->low = analogRead( PIN_TORQUE_SENSOR_LOW ) << 2;
-//    sei();
-//}
