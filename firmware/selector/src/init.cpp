@@ -41,34 +41,15 @@ void init_devices(void) {
     pinMode(PIN_STEP_MOTOR_PUL, OUTPUT);
 
     cli();
+    digitalWrite(PIN_STEP_MOTOR_ENABLE, HIGH);
+    digitalWrite(PIN_STEP_MOTOR_DIRECTION, LOW);
+    digitalWrite(PIN_STEP_MOTOR_PUL, LOW);
+    sei();
+
+    cli();
     digitalWrite(PIN_DAC_CHIP_SELECT, HIGH);
     digitalWrite(PIN_SPOOF_ENABLE, LOW);
     sei();
-
-//    while (1) {
-//        // мотор крутится по часовой стрелки
-//        for (int i = 0; i < (200*14); i++) {
-//            digitalWrite(PIN_STEP_MOTOR_DIRECTION, HIGH);
-//            digitalWrite(PIN_STEP_MOTOR_ENABLE, LOW);
-//            cli();
-//            digitalWrite(PIN_STEP_MOTOR_PUL, HIGH);
-//            delayMicroseconds(500);
-//            digitalWrite(PIN_STEP_MOTOR_PUL, LOW);
-//            delayMicroseconds(500);
-//            sei();
-//            digitalWrite(PIN_STEP_MOTOR_ENABLE, HIGH);
-//        }
-//        // мотор крутится по против часовой стрелки
-//        for (int i = 0; i < (200*14); i++) {
-//            digitalWrite(PIN_STEP_MOTOR_DIRECTION, LOW);
-//            digitalWrite(PIN_STEP_MOTOR_ENABLE, LOW);
-//            digitalWrite(PIN_STEP_MOTOR_PUL, HIGH);
-//            delayMicroseconds(500);
-//            digitalWrite(PIN_STEP_MOTOR_PUL, LOW);
-//            delayMicroseconds(500);
-//            digitalWrite(PIN_STEP_MOTOR_ENABLE, HIGH);
-//        }
-//    }
 }
 
 

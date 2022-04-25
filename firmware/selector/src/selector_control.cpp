@@ -170,7 +170,7 @@ void move_selector(void) {
                     const uint8_t current_index = positionToIndex(g_selector_control_state.current_position);
 
                     if (current_index != 0 && request_index != 0) {
-                        isClockWise = (request_index > current_index) ? false : true;
+                        isClockWise = (request_index > current_index) ? true : false;
 
                         motor_set_direction(isClockWise);
 
