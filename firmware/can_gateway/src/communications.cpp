@@ -53,10 +53,12 @@ void republish_obd_frames_to_control_can_bus( void )
     if( ret == CAN_RX_FRAME_AVAILABLE )
     {
         if( (rx_frame.id == OBD_STEERING_WHEEL_ANGLE_CAN_ID)
-            || (rx_frame.id == OBD_WHEEL_SPEED_CAN_ID)
-            || (rx_frame.id == OBD_BRAKE_PRESSURE_CAN_ID)
+            || (rx_frame.id == OBD_WHEEL_SPEED_1_CAN_ID)
+            || (rx_frame.id == OBD_WHEEL_SPEED_2_CAN_ID)
+//            || (rx_frame.id == OBD_BRAKE_PRESSURE_CAN_ID)
+            || (rx_frame.id == OBD_THROTTLE_POSITION_CAN_ID)
             || (rx_frame.id == OBD_SELECTOR_POSITION_CAN_ID)
-            || (rx_frame.id == OBD_SPEED_CAN_ID) )
+            || (rx_frame.id == OBD_LAMP_STATUS_CAN_ID) )
         {
             cli();
             g_control_can.sendMsgBuf(

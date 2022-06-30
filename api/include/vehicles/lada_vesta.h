@@ -38,10 +38,22 @@
 #define LADA_VESTA_OBD_STEERING_WHEEL_ANGLE_CAN_ID ( 0x0C6 )
 
 /*
- * @brief ID of the Kia Soul's OBD wheel speed CAN frame.
+ * @brief ID of the Lada Vesta OBD wheel speed CAN frame 1.
  *
  */
-#define LADA_VESTA_OBD_WHEEL_SPEED_CAN_ID ( 0x4B0 )
+#define LADA_VESTA_OBD_WHEEL_SPEED_1_CAN_ID ( 0x29A )
+
+/*
+ * @brief ID of the Lada Vesta OBD wheel speed CAN frame 2.
+ *
+ */
+#define LADA_VESTA_OBD_WHEEL_SPEED_2_CAN_ID ( 0x29C )
+
+/*
+ * @brief ID of the Lada Vesta OBD throttle position CAN frame.
+ *
+ */
+#define LADA_VESTA_OBD_THROTTLE_POSITION_CAN_ID ( 0x17A )
 
 /*
  * @brief ID of the Kia Soul's OBD brake pressure CAN frame.
@@ -62,11 +74,10 @@
 #define LADA_VESTA_OBD_SELECTOR_POSITION_CAN_ID ( 0x3F7 )
 
 /*
- * @brief ID of the Lada vesta speed info frame
+ * @brief ID of the Kia Soul's OBD brake pressure CAN frame.
  *
  */
-#define LADA_VESTA_OBD_SPEED_CAN_ID ( 0x4B0 )
-
+#define LADA_VESTA_OBD_LAMP_STATUS_CAN_ID ( 0x5DE )
 /**
  * @brief Steering wheel angle message data.
  * @warn Deprecated. Use \ref get_steering_wheel_angle instead.
