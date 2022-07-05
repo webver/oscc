@@ -1015,7 +1015,10 @@ can_contains_s can_detection( const char *can_channel )
                 ( rx_frame.can_id == OBD_STEERING_WHEEL_ANGLE_CAN_ID );
 
             vehicle_detection.has_wheel_speed |=
-                ( rx_frame.can_id == OBD_WHEEL_SPEED_CAN_ID );
+                ( rx_frame.can_id == OBD_WHEEL_SPEED_1_CAN_ID );
+
+            vehicle_detection.has_wheel_speed |=
+                    ( rx_frame.can_id == OBD_WHEEL_SPEED_2_CAN_ID );
         }
     }
 
