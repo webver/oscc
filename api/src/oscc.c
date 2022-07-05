@@ -1200,7 +1200,7 @@ static oscc_result_t get_wheel_speed(
         return OSCC_ERROR;
     }
 
-    if(frame->can_id != OBD_WHEEL_SPEED_CAN_ID)
+    if(frame->can_id != OBD_WHEEL_SPEED_1_CAN_ID)
     {
         return OSCC_ERROR;
     }
