@@ -52,8 +52,8 @@
 /*
  * @brief ID of the Lada Vesta OBD throttle position CAN frame.
  *
- */
-#define LADA_VESTA_OBD_THROTTLE_POSITION_CAN_ID ( 0x17A )
+ */ 
+#define LADA_VESTA_OBD_THROTTLE_POSITION_CAN_ID ( 0x18A )
 
 /*
  * @brief ID of the Kia Soul's OBD brake pressure CAN frame.
